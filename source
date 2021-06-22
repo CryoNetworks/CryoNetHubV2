@@ -47,6 +47,7 @@ local MainFrameTitle_3 = Instance.new("TextLabel")
 local InfiniteYield = Instance.new("TextButton")
 local FPSAimbot = Instance.new("TextButton")
 local UniBackButton = Instance.new("TextButton")
+local LT2Bark = Instance.new("TextButton")
 
 
 
@@ -381,6 +382,20 @@ LT2Blood.TextSize = 14.000
 LT2Blood.MouseButton1Down:connect(function()
 	_G.BloodKey = "AV1119ODDY07062021HackerAV1119"
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BloodStillCool/666blood666/main/nil"))()
+end)
+
+LT2Bark.Name = "LT2 - Bark"
+LT2Bark.Parent = LT2Page
+LT2Bark.BackgroundColor3 = Color3.fromRGB(93, 199, 209)
+LT2Bark.BorderSizePixel = 0
+LT2Bark.Position = UDim2.new(0.3359375, 0, 0.510324478, 0)
+LT2Bark.Size = UDim2.new(0, 83, 0, 22)
+LT2Bark.Font = Enum.Font.SourceSans
+LT2Bark.Text = "LT2 - Bark"
+LT2Bark.TextColor3 = Color3.fromRGB(0, 0, 0)
+LT2Bark.TextSize = 14.000
+LT2Bark.MouseButton1Down:connect(function()
+loadstring(game:HttpGetAsync'https://cdn.applebee1558.com/bark/bark.lua')('8.4 beta released :))')
 end)
 
 LT2JJK.Name = "LT2 - JJK"
