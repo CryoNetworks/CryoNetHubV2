@@ -53,6 +53,7 @@ local DiscordPage = Instance.new("Frame")
 local DiscordPageTitle = Instance.new("TextLabel")
 local DiscordPageTitle_2 = Instance.new("TextLabel")
 local DiscordBackButton = Instance.new("TextButton")
+local CNChatSpy = Instance.new("TextButton")
 
 
 
@@ -656,6 +657,41 @@ UniversalHacksPage.BorderSizePixel = 3
 UniversalHacksPage.Position = UDim2.new(0.407105833, 0, 0.221465081, 0)
 UniversalHacksPage.Size = UDim2.new(0, 256, 0, 339)
 UniversalHacksPage.Visible = false
+
+CNChatSpy.Name = "CN Chat Spy"
+CNChatSpy.Parent = UniversalHacksPage
+CNChatSpy.BackgroundColor3 = Color3.fromRGB(93, 199, 209)
+CNChatSpy.BorderSizePixel = 0
+CNChatSpy.Position = UDim2.new(0.3359375, 0, 0.421828955, 0)
+CNChatSpy.Size = UDim2.new(0, 83, 0, 22)
+CNChatSpy.Font = Enum.Font.SourceSans
+CNChatSpy.Text = "Chat Spy"
+CNChatSpy.TextColor3 = Color3.fromRGB(0, 0, 0)
+CNChatSpy.TextSize = 14.000
+CNChatSpy.MouseButton1Down:connect(function()
+function plrchat(plr, chat)
+print(plr.Name..": "..tick().."\n"..chat)
+end
+for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+    v.Chatted:connect(function(chat)
+if chatlogs then
+plrchat(v, chat)
+end
+end)
+end
+game:GetService("Players").PlayerAdded:connect(function(plr)
+    plr.Chatted:connect(function(chat)
+if chatlogs then
+plrchat(plr, chat)
+end
+end)
+end)
+chatlogs = true
+game:GetService("StarterGui"):SetCore("SendNotification", {
+Title = "Cryo Net LogChat Enabled.";
+Text = "Press F9 to see logs, PM'S Will be Printed there.";
+})
+end)
 
 Discord.Name = "Discord"
 Discord.Parent = ScrollingFrame
