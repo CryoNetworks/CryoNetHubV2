@@ -48,6 +48,11 @@ local InfiniteYield = Instance.new("TextButton")
 local FPSAimbot = Instance.new("TextButton")
 local UniBackButton = Instance.new("TextButton")
 local LT2Bark = Instance.new("TextButton")
+local Discord = Instance.new("TextButton")
+local DiscordPage = Instance.new("Frame")
+local DiscordPageTitle = Instance.new("TextLabel")
+local DiscordPageTitle_2 = Instance.new("TextLabel")
+local DiscordBackButton = Instance.new("TextButton")
 
 
 
@@ -177,6 +182,56 @@ LoginFrame.Size = UDim2.new(0, 256, 0, 339)
 LoginFrame.Visible = false
 LoginFrame.Draggable = true
 LoginFrame.Active = true
+
+DiscordPage.Name = "DiscordPage"
+DiscordPage.Parent = ScreenGui
+DiscordPage.BackgroundColor3 = Color3.fromRGB(62, 62, 63)
+DiscordPage.BorderColor3 = Color3.fromRGB(93, 199, 209)
+DiscordPage.BorderSizePixel = 3
+DiscordPage.Position = UDim2.new(0.407105833, 0, 0.221465081, 0)
+DiscordPage.Size = UDim2.new(0, 256, 0, 339)
+DiscordPage.Visible = false
+
+DiscordPageTitle.Name = "DiscordPageTitle"
+DiscordPageTitle.Parent = DiscordPage
+DiscordPageTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+DiscordPageTitle.BackgroundTransparency = 1.000
+DiscordPageTitle.Position = UDim2.new(0.112272263, 0, 0.0730496645, 0)
+DiscordPageTitle.Size = UDim2.new(0, 195, 0, 30)
+DiscordPageTitle.Font = Enum.Font.SourceSans
+DiscordPageTitle.Text = "Join our Discord!"
+DiscordPageTitle.TextColor3 = Color3.fromRGB(93, 199, 209)
+DiscordPageTitle.TextScaled = true
+DiscordPageTitle.TextSize = 14.000
+DiscordPageTitle.TextWrapped = true
+
+DiscordPageTitle_2.Name = "DiscordPageTitle"
+DiscordPageTitle_2.Parent = DiscordPage
+DiscordPageTitle_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+DiscordPageTitle_2.BackgroundTransparency = 1.000
+DiscordPageTitle_2.Position = UDim2.new(0, 0, 0.18809396, 0)
+DiscordPageTitle_2.Size = UDim2.new(0, 256, 0, 200)
+DiscordPageTitle_2.Font = Enum.Font.SourceSans
+DiscordPageTitle_2.Text = "https://discord.gg/k9pquUHNnd"
+DiscordPageTitle_2.TextColor3 = Color3.fromRGB(93, 199, 209)
+DiscordPageTitle_2.TextScaled = true
+DiscordPageTitle_2.TextSize = 20.000
+DiscordPageTitle_2.TextWrapped = true
+
+DiscordBackButton.Name = "DiscordBackButton"
+DiscordBackButton.Parent = DiscordPage
+DiscordBackButton.BackgroundColor3 = Color3.fromRGB(93, 199, 209)
+DiscordBackButton.BorderSizePixel = 0
+DiscordBackButton.Position = UDim2.new(0.3359375, 0, 0.843657792, 0)
+DiscordBackButton.Size = UDim2.new(0, 83, 0, 22)
+DiscordBackButton.Font = Enum.Font.SourceSans
+DiscordBackButton.Text = "<--- Back"
+DiscordBackButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+DiscordBackButton.TextSize = 14.000
+DiscordBackButton.MouseButton1Down:connect(function()
+DiscordPage.Visible = false
+MainFrame.Visible = true
+end)
 
 LoginTitle.Name = "LoginTitle"
 LoginTitle.Parent = LoginFrame
@@ -601,6 +656,20 @@ UniversalHacksPage.BorderSizePixel = 3
 UniversalHacksPage.Position = UDim2.new(0.407105833, 0, 0.221465081, 0)
 UniversalHacksPage.Size = UDim2.new(0, 256, 0, 339)
 UniversalHacksPage.Visible = false
+
+Discord.Name = "Discord"
+Discord.Parent = ScrollingFrame
+Discord.BackgroundColor3 = Color3.fromRGB(62, 62, 63)
+Discord.BorderColor3 = Color3.fromRGB(93, 199, 209)
+Discord.Size = UDim2.new(0, 200, 0, 27)
+Discord.Font = Enum.Font.SourceSans
+Discord.Text = "Discord"
+Discord.TextColor3 = Color3.fromRGB(255, 255, 255)
+Discord.TextSize = 14.000
+Discord.MouseButton1Down:connect(function()
+MainFrame.Visible = false
+DiscordPage.Visible = true
+end)
 
 MainFrameTitle_3.Name = "MainFrameTitle"
 MainFrameTitle_3.Parent = UniversalHacksPage
