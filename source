@@ -13,7 +13,6 @@ local CryoNetHub_2 = Instance.new("TextLabel")
 local V20_2 = Instance.new("TextLabel")
 local LoginFrame = Instance.new("Frame")
 local LoginTitle = Instance.new("TextLabel")
-local username = Instance.new("TextBox")
 local password = Instance.new("TextBox")
 local Submit = Instance.new("TextButton")
 local LoginFailed = Instance.new("TextLabel")
@@ -241,22 +240,11 @@ LoginTitle.BackgroundTransparency = 1.000
 LoginTitle.Position = UDim2.new(0.112272263, 0, 0.0730496645, 0)
 LoginTitle.Size = UDim2.new(0, 195, 0, 30)
 LoginTitle.Font = Enum.Font.SourceSans
-LoginTitle.Text = "Login"
+LoginTitle.Text = "Cryo Hub V2"
 LoginTitle.TextColor3 = Color3.fromRGB(93, 199, 209)
 LoginTitle.TextScaled = true
 LoginTitle.TextSize = 14.000
 LoginTitle.TextWrapped = true
-
-username.Name = "username"
-username.Parent = LoginFrame
-username.BackgroundColor3 = Color3.fromRGB(87, 88, 90)
-username.BorderColor3 = Color3.fromRGB(93, 199, 209)
-username.Position = UDim2.new(0.09375, 0, 0.255319148, 0)
-username.Size = UDim2.new(0, 200, 0, 22)
-username.Font = Enum.Font.SourceSans
-username.Text = "Username"
-username.TextColor3 = Color3.fromRGB(207, 208, 210)
-username.TextSize = 14.000
 
 password.Name = "password"
 password.Parent = LoginFrame
@@ -265,7 +253,7 @@ password.BorderColor3 = Color3.fromRGB(93, 199, 209)
 password.Position = UDim2.new(0.08984375, 0, 0.364741653, 0)
 password.Size = UDim2.new(0, 200, 0, 22)
 password.Font = Enum.Font.SourceSans
-password.Text = "Password"
+password.Text = "Enter Key Here..."
 password.TextColor3 = Color3.fromRGB(207, 208, 210)
 password.TextSize = 14.000
 
@@ -279,7 +267,7 @@ Submit.Text = "Submit"
 Submit.TextColor3 = Color3.fromRGB(0, 0, 0)
 Submit.TextSize = 14.000
 Submit.MouseButton1Down:connect(function()
-	if username.Text == "Cryo" and password.Text == "Networks" then
+	if password.Text == "2cKccTVKXXKi99KHGtQs1bsmoewLVx" then
 		TopBarLogin.Visible = false
 		TopBarLoggedIn.Visible = true
 		LoginFrame.Visible = false
@@ -296,7 +284,7 @@ LoginFailed.Position = UDim2.new(0.112272263, 0, 0.618772447, 0)
 LoginFailed.Size = UDim2.new(0, 195, 0, 21)
 LoginFailed.Visible = false
 LoginFailed.Font = Enum.Font.SourceSans
-LoginFailed.Text = "Login Failed, Please Try Again"
+LoginFailed.Text = "Invalid Key. Not a premium Member? Buy it on our discord."
 LoginFailed.TextColor3 = Color3.fromRGB(209, 0, 3)
 LoginFailed.TextScaled = true
 LoginFailed.TextSize = 14.000
