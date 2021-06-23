@@ -53,6 +53,7 @@ local DiscordPageTitle = Instance.new("TextLabel")
 local DiscordPageTitle_2 = Instance.new("TextLabel")
 local DiscordBackButton = Instance.new("TextButton")
 local CNChatSpy = Instance.new("TextButton")
+local CNWalkSpeed = Instance.new("TextButton")
 
 
 
@@ -158,6 +159,232 @@ CryoNetHub_2.TextColor3 = Color3.fromRGB(93, 199, 209)
 CryoNetHub_2.TextScaled = true
 CryoNetHub_2.TextSize = 14.000
 CryoNetHub_2.TextWrapped = true
+
+CNWalkSpeed.Name = "CN WalkSpeed"
+CNWalkSpeed.Parent = UniversalHacksPage
+CNWalkSpeed.BackgroundColor3 = Color3.fromRGB(93, 199, 209)
+CNWalkSpeed.BorderSizePixel = 0
+CNWalkSpeed.Position = UDim2.new(0.3359375, 0, 0.513274372, 0)
+CNWalkSpeed.Size = UDim2.new(0, 83, 0, 22)
+CNWalkSpeed.Font = Enum.Font.SourceSans
+CNWalkSpeed.Text = "Walk Speed"
+CNWalkSpeed.TextColor3 = Color3.fromRGB(0, 0, 0)
+CNWalkSpeed.TextSize = 14.000
+CNWalkSpeed.MouseButton1Down:connect(function()
+-- //~ F to toggle ~\\ --
+function startupMSG(text, clr)
+    game.StarterGui:SetCore("ChatMakeSystemMessage", {
+        Text = text;
+        Color = Color3.fromRGB(0,255,239);
+    })
+end
+
+startupMSG("Walkspeed Activated. Enjoy :)", Color3.fromRGB(0,255,239))
+    
+_G.infinjump = true
+
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+Mouse.KeyDown:connect(function(k)
+if _G.infinjump then
+if k:byte() == 32 then
+Humanoid = game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+Humanoid:ChangeState("Jumping")
+wait(0.1)
+Humanoid:ChangeState("Seated")
+end
+end
+end)
+
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+Mouse.KeyDown:connect(function(k)
+k = k:lower()
+if k == "f" then
+if _G.infinjump == true then
+_G.infinjump = false
+else
+_G.infinjump = true
+end
+end
+end)
+--[[
+Made by Demonized on v3rm
+
+Commands:
+--------------------------------
+~Set new keyinds; /e toggleBinds
+
+~Set increase/decrease per toggle; /e setInterval [number]
+
+~Manual walkspeed change; /e manualSpeed [number]
+
+~Check current keybinds; /e checkBinds
+
+~Set other players walkspeed (Filtering disabled); /e setPlr [player] [number]
+
+Important: If you get a message in the GUI saying 
+'Speed change is not allowed on this game' that means the game you were playing
+was in our directory for patching WalkSpeed changes. If the speed change was 
+blocked do not attempt to change it yourself, it could cause you getting banned 
+from the game.
+--]]
+
+local ScrollSpeed = Instance.new("ScreenGui")
+local Main = Instance.new("TextLabel")
+local plr = game.Players.LocalPlayer
+
+--Setup GUI
+ScrollSpeed.Name = "Speed GUI"
+ScrollSpeed.Parent = game.Players.LocalPlayer.PlayerGui
+Main.Name = "Main"
+Main.Parent = ScrollSpeed
+Main.Active = true
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.new(0.333333, 1, 0.498039)
+Main.BorderSizePixel = 0
+Main.Draggable = true
+Main.Position = UDim2.new(0.5, 0, 0.917844534, 0)
+Main.Size = UDim2.new(0, 118, 0, 45)
+Main.Font = Enum.Font.SourceSansLight
+Main.Text = "Key Speed Started..."
+Main.TextScaled = true
+Main.TextSize = 14
+Main.TextWrapped = true
+
+--Functions
+
+local unallowed = {177200271} --DO NOT EDIT THIS TABLE FOR YOUR OWN SAKE!
+
+function checkId()
+for _,v in pairs(unallowed) do
+if v == game.GameId then
+return false
+end
+end
+end
+
+function setSpeed(num, mode)
+if checkId() ~= false then
+if mode == false or mode == nil then
+plr.Character.Humanoid.WalkSpeed = plr.Character.Humanoid.WalkSpeed + num
+else
+plr.Character.Humanoid.WalkSpeed = num
+end
+else
+Main.Text = "Speed change is not allowed on this game"
+end
+end
+
+local mouse = plr:GetMouse()
+
+wait(1)
+
+if workspace.FilteringEnabled then
+Main.Text = "Filtering is enabled"
+else
+Main.Text = "Filtering is disabled"
+end
+
+wait(1)
+
+local Up = false
+
+local Down = false
+
+local finished = false
+
+local Interval = 5
+
+Main.Text = "Please type your speed up button"
+mouse.KeyDown:connect(function(key)
+if Up == false then
+finished = false
+Up = key
+Main.Text = "Your up key is: '"..tostring(key).."'"
+wait(1)
+Main.Text = "Please type your speed down button"
+elseif Down == false then
+Down = key
+Main.Text = "Your down key is: '"..tostring(key).."'"
+wait(1)
+Main.Text = "Current Speed: "..tostring(plr.Character.Humanoid.WalkSpeed)
+finished = true
+elseif key == Up then
+setSpeed(Interval)
+elseif key == Down then
+setSpeed(-Interval)
+end
+end)
+
+plr.Chatted:connect(function(msg)
+local front, command, argument, argument1 = string.match(msg, "([^\|]+)\ ([^\|]+)\ ([^\|]+)\ ([^\|]+)")
+if finished == true then
+if msg == "/e toggleBinds" then
+Up = false
+Down = false
+Main.Text = "Please type your speed up button"
+elseif string.sub(msg, 1, 14) == "/cn setInterval" then
+if string.sub(msg, 15, #tostring(msg)) then
+local success = pcall(function()
+tonumber(string.sub(msg, 15, #tostring(msg)))
+end)
+if not success then
+local before
+before = Main.Text
+Main.Text = "Please supply a number"
+wait(1)
+Main.Text = before
+else
+Interval = tonumber(string.sub(msg, 15, #tostring(msg)))
+end
+end
+elseif string.sub(msg,1,14) == "/cn manualSpeed" then
+if string.sub(msg, 15, #tostring(msg)) then
+local success = pcall(function()
+tonumber(string.sub(msg, 15, #tostring(msg)))
+end)
+if not success then
+local before
+before = Main.Text
+Main.Text = "Please supply a number"
+wait(1)
+Main.Text = before
+else
+setSpeed(tonumber(string.sub(msg, 15, #tostring(msg))), true)
+end
+end
+elseif msg == "/cn checkBinds" then
+game.StarterGui:SetCore("SendNotification", {
+Title = "Speed Toggler";
+Text = "Your keybinds are: Up; '"..Up.."', Down; '"..Down.."'";
+Duration = 5
+})
+elseif front == "/e" and command == "setPlr" then
+if workspace.FilteringEnabled ~= true then
+local t = game.Players:FindFirstChild(argument)
+if t then
+if tonumber(argument1) ~= nil then
+t.Character.Humanoid.WalkSpeed = tonumber(argument1)
+end
+end
+else
+Main.Text = "Command not allowed, filtering is enabled"
+wait(2.5)
+Main.Text = "Current Speed: "..tostring(plr.Character.Humanoid.WalkSpeed)
+end
+end
+end
+end)
+
+while wait() do
+plr.Character.Humanoid.Changed:connect(function(p)
+if p == "WalkSpeed" then
+Main.Text = "Current Speed: "..tostring(plr.Character.Humanoid.WalkSpeed)
+end
+end)
+end
+end)
 
 V20_2.Name = "V2.0"
 V20_2.Parent = TopBarLoggedIn
